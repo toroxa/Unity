@@ -1,0 +1,74 @@
+﻿@model LLV.Models.UsuarioModel
+
+@{
+    Layout = null;
+    ViewBag.Title = "LLV Auto - Sadecar";
+}
+
+<!DOCTYPE html>
+<html @*ng-app="appLLV"*@>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="login page" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="~/Content/assets/img/favicon.png" type="image/x-icon">
+
+    <!--Basic Styles-->
+    <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link id="bootstrap-rtl-link" href="#" rel="stylesheet" />
+    <link href="~/Content/assets/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!--Fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300" rel="stylesheet" type="text/css">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="~/Content/assets/css/beyond.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/demo.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/animate.min.css" rel="stylesheet" />
+    <link id="skin-link" href="#" rel="stylesheet" type="text/css" />
+
+    <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
+    <script src="~/Content/assets/js/skins.min.js"></script>
+</head>
+<!--Head Ends-->
+<!--Body-->
+<body>
+    @using (Html.BeginForm("Login", "Acesso", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="login-container animated fadeInDown">
+            <div class="loginbox bg-white">
+                <div class="loginbox-title" style="margin-bottom: 15px;">LLV Auto</div>
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                <div class="loginbox-textbox">
+                    @Html.TextBoxFor(m => m.Login, new { @class = "form-control", @placeholder = "Digite aqui seu Usuário" })
+                    @*@Html.ValidationMessageFor(m => m.Login, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="loginbox-textbox">
+                    @Html.PasswordFor(m => m.Senha, new { @class = "form-control", @placeholder = "Digite aqui sua Senha" })
+                    @*@Html.ValidationMessageFor(m => m.Senha, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="loginbox-submit">
+                    <input type="submit" class="btn btn-primary btn-block" value="Entrar">
+                </div>
+            </div>
+            <div class="logobox">
+            </div>
+        </div>
+    }
+
+    <!--Basic Scripts-->
+    <script src="~/Content/assets/js/jquery.min.js"></script>
+    <script src="~/Content/assets/js/bootstrap.min.js"></script>
+    <script src="~/Content/assets/js/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!--Beyond Scripts-->
+    <script src="~/Content/assets/js/beyond.js"></script>
+</body>
+<!--Body Ends-->
+<!-- Mirrored from beyondadmin-v1.4.s3-website-us-east-1.amazonaws.com/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 May 2015 18:36:32 GMT -->
+</html>

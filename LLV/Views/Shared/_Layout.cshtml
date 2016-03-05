@@ -1,0 +1,312 @@
+﻿@{
+    var Usuario = (LLV.Models.UsuarioModel)Session["logado"];
+    if (string.IsNullOrWhiteSpace(Usuario.Foto))
+    {
+        Usuario.Foto = "Content/assets/img/avatars/blank-avatar.jpg";
+    }
+    //var TituloPagina = ViewBag.TituloPagina;
+    //var BreadCrumbPagina = ViewBag.BreadCrumbPagina;
+    ViewBag.Title = "LLV Auto - Sadecar";// + (!string.IsNullOrWhiteSpace(BreadCrumbPagina) ? " - " + BreadCrumbPagina : string.Empty);
+
+    //var Menus = Usuario.Menus;
+
+    //if (Menus != null)
+    //{
+    //    //
+    //}
+}
+<!DOCTYPE html>
+<html ng-app="appLLV">
+<head>
+    <script>
+        var config = {
+            baseRoute: '@(Request.ApplicationPath.TrimEnd('/'))',
+            baseUrl: '@(Url.Action("Index", "Home", null, Request.Url.Scheme).TrimEnd('/'))'
+        };
+        config.apiBaseUrl = config.baseUrl + '/api';
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="Content/assets/img/favicon.png" type="image/x-icon">
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="styleSheet" href="~/Content/ui-grid.min.css" />
+
+    <!--Basic Styles-->
+    <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link id="bootstrap-rtl-link" href="#" rel="stylesheet" />
+    <link href="~/Content/assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/weather-icons.min.css" rel="stylesheet" />
+
+    <!--Fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="~/Content/assets/css/beyond.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/assets/css/demo.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/typicons.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/animate.min.css" rel="stylesheet" />
+    <link id="skin-link" href="#" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
+    <!-- Scripts -->
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/scripts/angular.js"></script>
+    <script src="~/scripts/angular-route.js"></script>
+    <script src="~/scripts/angular-animate.js"></script>
+    <script src="~/scripts/angular-ui/ui-bootstrap-tpls.js"></script>
+    <script src="~/scripts/angular-sanitize.js"></script>
+
+    <script src="~/scripts/ui-grid.min.js"></script>
+
+    <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
+    <script src="~/Content/assets/js/skins.min.js"></script>
+
+    <!-- Arquivos de Angular do Projeto -->
+    <script src="~/scripts/App/AppLLV.js"></script>
+    <script src="~/scripts/App/ModalFactory.js"></script>
+    <script src="~/scripts/App/Config.js"></script>
+    <script src="~/scripts/App/Controller/MainCtrl.js"></script>
+    <script src="~/scripts/App/Controller/HomeCtrl.js"></script>
+    <script src="~/scripts/App/Controller/GerenciaParametroCtrl.js"></script>
+    <script src="~/scripts/App/Controller/OrdemServicoCtrl.js"></script>
+
+    @*<base href="~/scripts/App/">*@
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body ng-controller="MainCtrl as main">
+    <!-- Loading Container -->
+    <div class="loading-container">
+        <div class="loader"></div>
+    </div>
+    <!--  /Loading Container -->
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="navbar-container">
+                <div class="navbar-header pull-left">
+                    <a href="/" class="navbar-brand">
+                        <small>
+                            <img src="Content/assets/img/logo.png" alt="" />
+                        </small>
+                    </a>
+                </div>
+                <div class="sidebar-collapse" id="sidebar-collapse">
+                    <i class="collapse-icon fa fa-bars"></i>
+                </div>
+                <!-- /Sidebar Collapse -->
+                <!-- Account Area and Settings --->
+                <div class="navbar-header pull-right">
+                    <div class="navbar-account">
+                        <ul class="account-area">
+                            <li>
+                                <a class="login-area dropdown-toggle" data-toggle="dropdown">
+                                    @{
+                                        if (!Usuario.Foto.Contains("blank-avatar.jpg"))
+                                        {
+                                            <div class="avatar" title="Visualize aqui seu Perfil">
+                                                <img src="@Html.Raw(Usuario.Foto)">
+                                            </div>
+                                        }
+                                    }
+                                    <section>
+                                        <h2><span class="profile"><span>@Html.Raw(Usuario.Nome)</span></span></h2>
+                                    </section>
+                                </a>
+                                <!--Login Area Dropdown-->
+                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
+                                    <li class="username"><a>@Html.Raw(Usuario.Login)</a></li>
+                                    <li class="email"><a>@Html.Raw(Usuario.Email)</a></li>
+                                    <!--Avatar Area-->
+                                    <li>
+                                        @{
+                                            <div class="avatar-area">
+                                                <img src="@Html.Raw(Usuario.Foto)" class="avatar">
+                                                <span class="caption">Alterar Foto</span>
+                                            </div>
+                                        }
+                                    </li>
+                                    <!--Avatar Area-->
+                                    <li class="edit">
+                                        <a href="#!/Perfil" class="pull-left">Editar Perfil</a>
+                                        <!--<a href="#" class="pull-right">Setting</a>-->
+                                    </li>
+                                    <!--Theme Selector Area-->
+                                    <li class="theme-area">
+                                        <ul class="colorpicker" id="skin-changer">
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#5DB2FF;" rel="~/Content/assets/css/skins/blue.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#2dc3e8;" rel="~/Content/assets/css/skins/azure.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#03B3B2;" rel="~/Content/assets/css/skins/teal.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#53a93f;" rel="~/Content/assets/css/skins/green.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#FF8F32;" rel="~/Content/assets/css/skins/orange.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#cc324b;" rel="~/Content/assets/css/skins/pink.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#AC193D;" rel="~/Content/assets/css/skins/darkred.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#8C0095;" rel="~/Content/assets/css/skins/purple.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#0072C6;" rel="~/Content/assets/css/skins/darkblue.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#585858;" rel="~/Content/assets/css/skins/gray.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#474544;" rel="~/Content/assets/css/skins/black.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#001940;" rel="~/Content/assets/css/skins/deepblue.min.css"></a></li>
+                                        </ul>
+                                    </li>
+                                    <!--/Theme Selector Area-->
+                                    <li class="dropdown-footer">
+                                        <a href="@Url.Action("Logoff", "Acesso")">Sair</a>
+                                    </li>
+                                </ul>
+                                <!--/Login Area Dropdown-->
+                            </li>
+                            <!-- /Account Area -->
+                            <!--Note: notice that setting div must start right after account area list.
+                            no space must be between these elements-->
+                            <!-- Settings -->
+                        </ul><div class="setting">
+                            <a id="btn-setting" title="Setting" href="#">
+                                <i class="icon glyphicon glyphicon-cog"></i>
+                            </a>
+                        </div><div class="setting-container">
+                            <label>
+                                <input type="checkbox" id="checkbox_fixednavbar">
+                                <span class="text">Fixed Navbar</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" id="checkbox_fixedsidebar">
+                                <span class="text">Fixed SideBar</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" id="checkbox_fixedbreadcrumbs">
+                                <span class="text">Fixed BreadCrumbs</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" id="checkbox_fixedheader">
+                                <span class="text">Fixed Header</span>
+                            </label>
+                        </div>
+                        <!-- Settings -->
+                    </div>
+                </div>
+                <!-- /Account Area and Settings -->
+            </div>
+        </div>
+    </div>
+    <!-- /Navbar -->
+    <!-- Main Container -->
+    <div class="main-container container-fluid">
+        <!-- Page Container -->
+        <div class="page-container">
+
+            <!-- Page Sidebar -->
+            <div class="page-sidebar" id="sidebar">
+                <!-- Page Sidebar Header-->
+                <div class="sidebar-header-wrapper">
+                    <input type="text" class="searchinput" />
+                    <i class="searchicon fa fa-search"></i>
+                    <div class="searchhelper">Pesquise aqui: Telas, Relatórios e tudo o que você não encontar no Menu abaixo!</div>
+                </div>
+                <!-- /Page Sidebar Header -->
+                <!-- Sidebar Menu -->
+                <ul class="nav sidebar-menu">
+                    <li ng-repeat="item in menus" ng-class="{ active: isActive(item.url)}">
+                        <a href="#!{{item.url}}">
+                            <i class="{{item.classIcon}}"></i>
+                            <span class="menu-text"> {{item.description}} </span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /Sidebar Menu -->
+            </div>
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li>
+                            <i class="fa fa-home"></i>
+                            <a href="#!/">Home</a>
+                            @*@Html.ActionLink("Home", "Index", "Home")*@
+                        </li>
+                        @{
+                            @*if (!string.IsNullOrWhiteSpace(BreadCrumbPagina))
+                            {
+                                <li class="active">@Html.Raw(BreadCrumbPagina)</li>
+                            }*@
+                        }
+                    </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+                <!-- Page Header -->
+                <div class="page-header position-relative">
+                    <div class="header-title">
+                        @{
+                            @*if (!string.IsNullOrWhiteSpace(TituloPagina))
+                            {
+                                <h1>@Html.Raw(TituloPagina)</h1>
+                            }*@
+                        }
+                    </div>
+                    <!--Header Buttons-->
+                    <div class="header-buttons">
+                        <a class="sidebar-toggler" href="#">
+                            <i class="fa fa-arrows-h"></i>
+                        </a>
+                        @*<a class="refresh" id="refresh-toggler" href="#">
+                            <i class="glyphicon glyphicon-refresh"></i>
+                        </a>*@
+                        <a class="fullscreen" id="fullscreen-toggler" href="#">
+                            <i class="glyphicon glyphicon-fullscreen"></i>
+                        </a>
+                    </div>
+                    <!--Header Buttons End-->
+                </div>
+                <!-- /Page Header -->
+                <!-- Page Body -->
+                <div class="page-body">
+                    @RenderBody()
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+
+        </div>
+        <!-- /Page Container -->
+        <!-- Main Container -->
+
+    </div>
+
+    <!--Basic Scripts-->
+    <script src="~/Content/assets/js/jquery.min.js"></script>
+    <script src="~/Content/assets/js/bootstrap.min.js"></script>
+    <script src="~/Content/assets/js/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!--Beyond Scripts-->
+    <script src="~/Content/assets/js/beyond.js"></script>
+
+
+    <!--Page Related Scripts-->
+    <!--Sparkline Charts Needed Scripts-->
+    <script src="~/Content/assets/js/charts/sparkline/jquery.sparkline.js"></script>
+    <script src="~/Content/assets/js/charts/sparkline/sparkline-init.js"></script>
+
+    <!--Easy Pie Charts Needed Scripts-->
+    <script src="~/Content/assets/js/charts/easypiechart/jquery.easypiechart.js"></script>
+    <script src="~/Content/assets/js/charts/easypiechart/easypiechart-init.js"></script>
+
+    <!--Flot Charts Needed Scripts-->
+    <script src="~/Content/assets/js/charts/flot/jquery.flot.js"></script>
+    <script src="~/Content/assets/js/charts/flot/jquery.flot.resize.js"></script>
+    <script src="~/Content/assets/js/charts/flot/jquery.flot.pie.js"></script>
+    <script src="~/Content/assets/js/charts/flot/jquery.flot.tooltip.js"></script>
+    <script src="~/Content/assets/js/charts/flot/jquery.flot.orderBars.js"></script>
+
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>*@
+</body>
+<!--  /Body -->
+<!-- Mirrored from beyondadmin-v1.4.s3-website-us-east-1.amazonaws.com/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 May 2015 18:35:17 GMT -->
+</html>

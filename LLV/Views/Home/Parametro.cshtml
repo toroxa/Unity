@@ -1,0 +1,10 @@
+﻿@*@{
+    ViewBag.BreadCrumbPagina = "Parâmetros do Sistema";
+    ViewBag.TituloPagina = "Configuração de Parâmetros do Sistema";
+}*@
+@*<script src="~/scripts/App/Controller/GerenciaParametroCtrl.js"></script>*@
+<row>
+    <div ng-controller="GerenciaParametroCtrl as vm">
+        <div class="grid" ui-grid-selection ui-grid-auto-resize ui-grid="vm.gridOptions" ui-grid-edit></div>
+    </div>
+</row>

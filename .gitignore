@@ -1,0 +1,50 @@
+# Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
+Thumbs.db
+*.obj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.sln.docstates
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+[Bb]in
+[Dd]ebug*/
+*.lib
+*.sbr
+obj/
+[Rr]elease*/
+*.csproj.user
+
+# SQL Server database files
+*.mdf
+*.ldf
+
+# JetBrains
+_ReSharper*/
+*.ReSharper.user
+.dotCover
+[Tt]est[Rr]esult*
+*DotSettings*
+
+# Silverlight packages
+ClientBin*
+
+# Publish
+*.Publish.xml
+
+#NuGet packages
+packages/
+
+#Node packages
+node_modules/
