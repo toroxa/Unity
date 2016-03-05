@@ -12,16 +12,16 @@
         ]
     };
 
-    $http.get(config.apiBaseUrl + '/os/listar')
-    .success(function (result) {
-        if (result.ok) {
-            os.gridOptions.data = result.data;
-        } else {
-            console.error(result.errors);
-        }
-    }).error(function (data, status, headers, config) {
-        console.error(status + ", " + data);
-    });
+    //$http.get(config.apiBaseUrl + '/os/listar')
+    //.success(function (result) {
+    //    if (result.ok) {
+    //        os.gridOptions.data = result.data;
+    //    } else {
+    //        console.error(result.errors);
+    //    }
+    //}).error(function (data, status, headers, config) {
+    //    console.error(status + ", " + data);
+    //});
 
     $scope.person = {};
     $scope.people = [

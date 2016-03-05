@@ -1,4 +1,4 @@
-﻿var AppLLV = angular.module('appLLV', ['ui.bootstrap', 'ui.grid', 'ui.grid.selection', 'ui.grid.autoResize', 'ngRoute', 'ngAnimate']);
+﻿var AppLLV = angular.module('appLLV', ['ui.bootstrap', 'ui.grid', 'ui.grid.selection', 'ui.grid.autoResize', 'ngRoute', 'ngAnimate', 'ngSanitize', 'ui.select']);
 
 AppLLV.filter('propsFilter', function () {
     return function (items, props) {

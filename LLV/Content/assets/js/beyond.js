@@ -21,39 +21,6 @@ $("#skin-changer li a").click(function () {
     window.location.reload();
 });
 
-//Checks Not to Do rtl-support for Arabic and Persian Demo Pages
-
-var rtlchanger = document.getElementById('rtl-changer');
-
-if (location.pathname != "/index-rtl-fa.html" && location.pathname != "index-rtl-ar.html") {
-    if (readCookie("rtl-support")) {
-        switchClasses("pull-right", "pull-left");
-        switchClasses("databox-right", "databox-left");
-        switchClasses("item-right", "item-left");
-        $('.navbar-brand small img').attr('src', 'assets/img/logo-rtl.png');
-        if (rtlchanger != null)
-            document.getElementById('rtl-changer').checked = true;
-    }
-    else {
-        if (rtlchanger != null)
-            rtlchanger.checked = false;
-    }
-
-    if (rtlchanger != null) {
-        rtlchanger.onchange = function () {
-            if (this.checked) {
-                createCookie("rtl-support", "true", 10);
-            }
-            else {
-                eraseCookie("rtl-support");
-            }
-            setTimeout(function () {
-                window.location.reload();
-            }, 600);
-
-        };
-    }
-}
 /*Loading*/
 $(window)
     .load(function () {
@@ -62,7 +29,6 @@ $(window)
                 .addClass('loading-inactive');
         }, 1000);
     });
-
 
 /*Account Area --> Setting Button*/
 $('#btn-setting')
@@ -146,8 +112,8 @@ $("[data-toggle=tooltip]")
     });
 
 InitiateSideMenu();
-InitiateSettings();
-InitiateWidgets();
+//InitiateSettings();
+//InitiateWidgets();
 
 function InitiateSideMenu() {
 
@@ -177,7 +143,7 @@ function InitiateSideMenu() {
                 .removeClass("open");
         } else {
             if ($('.page-sidebar').hasClass('sidebar-fixed')) {
-                var position = (readCookie("rtl-support") || location.pathname == "/index-rtl-fa.html" || location.pathname == "index-rtl-ar.html") ? 'right' : 'left';
+                var position = 'left';
                 $('.sidebar-menu').slimscroll({
                     height: 'auto',
                     position: position,
@@ -312,206 +278,6 @@ function Notify(message, position, timeout, theme, icon, closable) {
     toastr.options.iconClass = icon + ' toast-' + theme;
     toastr['custom'](message);
 }
-
-/*#region handle Settings*/
-function InitiateSettings() {
-    if (readCookie("navbar-fixed-top") != null) {
-        if (readCookie("navbar-fixed-top") == "true") {
-            $('#checkbox_fixednavbar').prop('checked', true);
-            $('.navbar').addClass('navbar-fixed-top');
-        }
-    }
-
-    if (readCookie("sidebar-fixed") != null) {
-        if (readCookie("sidebar-fixed") == "true") {
-            $('#checkbox_fixedsidebar').prop('checked', true);
-            $('.page-sidebar').addClass('sidebar-fixed');
-
-            //Slim Scrolling for Sidebar Menu in fix state
-            if (!$(".page-sidebar").hasClass("menu-compact")) {
-                var position = (readCookie("rtl-support") || location.pathname == "/index-rtl-fa.html" || location.pathname == "index-rtl-ar.html") ? 'right' : 'left';
-                $('.sidebar-menu').slimscroll({
-                    height: 'auto',
-                    position: position,
-                    size: '3px',
-                    color: themeprimary
-                });
-            }
-        }
-
-    }
-    if (readCookie("breadcrumbs-fixed") != null) {
-        if (readCookie("breadcrumbs-fixed") == "true") {
-            $('#checkbox_fixedbreadcrumbs').prop('checked', true);
-            $('.page-breadcrumbs').addClass('breadcrumbs-fixed');
-        }
-    }
-    if (readCookie("page-header-fixed") != null) {
-        if (readCookie("page-header-fixed") == "true") {
-            $('#checkbox_fixedheader').prop('checked', true);
-            $('.page-header').addClass('page-header-fixed');
-        }
-    }
-
-
-    $('#checkbox_fixednavbar')
-        .change(function () {
-            $('.navbar')
-                .toggleClass('navbar-fixed-top');
-
-            if (($('#checkbox_fixedsidebar')
-                .is(":checked"))) {
-                $('#checkbox_fixedsidebar')
-                    .prop('checked', false);
-                $('.page-sidebar')
-                    .toggleClass('sidebar-fixed');
-            }
-
-            if (($('#checkbox_fixedbreadcrumbs')
-                .is(":checked")) && !($(this)
-                .is(":checked"))) {
-                $('#checkbox_fixedbreadcrumbs')
-                    .prop('checked', false);
-                $('.page-breadcrumbs')
-                    .toggleClass('breadcrumbs-fixed');
-            }
-
-            if (($('#checkbox_fixedheader')
-                .is(":checked")) && !($(this)
-                .is(":checked"))) {
-                $('#checkbox_fixedheader')
-                    .prop('checked', false);
-                $('.page-header')
-                    .toggleClass('page-header-fixed');
-            }
-            setCookiesForFixedSettings();
-        });
-
-    $('#checkbox_fixedsidebar')
-        .change(function () {
-
-            $('.page-sidebar')
-                .toggleClass('sidebar-fixed');
-
-            if (!($('#checkbox_fixednavbar')
-                .is(":checked"))) {
-                $('#checkbox_fixednavbar')
-                    .prop('checked', true);
-                $('.navbar')
-                    .toggleClass('navbar-fixed-top');
-            }
-            if (($('#checkbox_fixedbreadcrumbs')
-                .is(":checked")) && !($(this)
-                .is(":checked"))) {
-                $('#checkbox_fixedbreadcrumbs')
-                    .prop('checked', false);
-                $('.page-breadcrumbs')
-                    .toggleClass('breadcrumbs-fixed');
-            }
-
-            if (($('#checkbox_fixedheader')
-                .is(":checked")) && !($(this)
-                .is(":checked"))) {
-                $('#checkbox_fixedheader')
-                    .prop('checked', false);
-                $('.page-header')
-                    .toggleClass('page-header-fixed');
-            }
-            setCookiesForFixedSettings();
-
-        });
-    $('#checkbox_fixedbreadcrumbs')
-        .change(function () {
-
-            $('.page-breadcrumbs')
-                .toggleClass('breadcrumbs-fixed');
-
-
-            if (!($('#checkbox_fixedsidebar')
-                .is(":checked"))) {
-                $('#checkbox_fixedsidebar')
-                    .prop('checked', true);
-                $('.page-sidebar')
-                    .toggleClass('sidebar-fixed');
-            }
-            if (!($('#checkbox_fixednavbar')
-                .is(":checked"))) {
-                $('#checkbox_fixednavbar')
-                    .prop('checked', true);
-                $('.navbar')
-                    .toggleClass('navbar-fixed-top');
-            }
-            if (($('#checkbox_fixedheader')
-                .is(":checked")) && !($(this)
-                .is(":checked"))) {
-                $('#checkbox_fixedheader')
-                    .prop('checked', false);
-                $('.page-header')
-                    .toggleClass('page-header-fixed');
-            }
-            setCookiesForFixedSettings();
-
-        });
-
-    $('#checkbox_fixedheader')
-        .change(function () {
-
-            $('.page-header')
-                .toggleClass('page-header-fixed');
-
-
-            if (!($('#checkbox_fixedbreadcrumbs')
-                .is(":checked"))) {
-                $('#checkbox_fixedbreadcrumbs')
-                    .prop('checked', true);
-                $('.page-breadcrumbs')
-                    .toggleClass('breadcrumbs-fixed');
-            }
-
-            if (!($('#checkbox_fixedsidebar')
-                .is(":checked"))) {
-                $('#checkbox_fixedsidebar')
-                    .prop('checked', true);
-                $('.page-sidebar')
-                    .toggleClass('sidebar-fixed');
-            }
-            if (!($('#checkbox_fixednavbar')
-                .is(":checked"))) {
-                $('#checkbox_fixednavbar')
-                    .prop('checked', true);
-                $('.navbar')
-                    .toggleClass('navbar-fixed-top');
-            }
-
-            setCookiesForFixedSettings();
-        });
-}
-
-function setCookiesForFixedSettings() {
-    createCookie("navbar-fixed-top", $('#checkbox_fixednavbar').is(':checked'), 100);
-    createCookie("sidebar-fixed", $('#checkbox_fixedsidebar').is(':checked'), 100);
-    createCookie("breadcrumbs-fixed", $('#checkbox_fixedbreadcrumbs').is(':checked'), 100);
-    createCookie("page-header-fixed", $('#checkbox_fixedheader').is(':checked'), 100);
-
-    var position = (readCookie("rtl-support") || location.pathname == "/index-rtl-fa.html" || location.pathname == "index-rtl-ar.html") ? 'right' : 'left';
-    if ($('#checkbox_fixedsidebar').is(':checked')) {
-        if (!$('.page-sidebar').hasClass('menu-compact')) {
-            //Slim Scrolling for Sidebar Menu in fix state
-            $('.sidebar-menu').slimscroll({
-                position: position,
-                size: '3px',
-                color: themeprimary,
-                height: 'auto',
-            });
-        }
-    } else {
-        if ($(".sidebar-menu").closest("div").hasClass("slimScrollDiv")) {
-            $(".sidebar-menu").slimScroll({ destroy: true });
-            $(".sidebar-menu").attr('style', '');
-        }
-    }
-}
-/*#endregion handle Settings*/
 
 /*#region Get Colors*/
 //Get colors from a string base on theme colors

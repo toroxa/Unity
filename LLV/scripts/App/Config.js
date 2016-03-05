@@ -15,6 +15,11 @@
           redirectTo: '/'
       });
 
+      //$.getScript('/path/to/imported/script.js', function () {
+      //    // script is now loaded and executed.
+      //    // put your dependent JS here.
+      //});
+
       // Specify HTML5 mode (using the History APIs) or HashBang syntax.
       $locationProvider.html5Mode(false).hashPrefix('!');
   }]);
