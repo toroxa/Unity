@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -146,118 +146,6 @@
     <Content Include="Content\angular-material-icons\notification.svg" />
     <Content Include="Content\angular-material-icons\social.svg" />
     <Content Include="Content\angular-material-icons\toggle.svg" />
-    <Content Include="Content\assets\css\4095-rtl.min.css" />
-    <Content Include="Content\assets\css\4095.min.css" />
-    <Content Include="Content\assets\css\animate.min.css" />
-    <Content Include="Content\assets\css\beyond-rtl.min.css" />
-    <Content Include="Content\assets\css\beyond.min.css" />
-    <Content Include="Content\assets\css\bootstrap-rtl.min.css" />
-    <Content Include="Content\assets\css\bootstrap.min.css" />
-    <Content Include="Content\assets\css\dataTables.bootstrap.css" />
-    <Content Include="Content\assets\css\demo.min.css" />
-    <Content Include="Content\assets\css\font-awesome.min.css" />
-    <Content Include="Content\assets\css\img\select2-spinner.html" />
-    <Content Include="Content\assets\css\img\tree-icons.html" />
-    <Content Include="Content\assets\css\skins\azure.min.css" />
-    <Content Include="Content\assets\css\skins\black.min.css" />
-    <Content Include="Content\assets\css\skins\blue.min.css" />
-    <Content Include="Content\assets\css\skins\darkblue.min.css" />
-    <Content Include="Content\assets\css\skins\darkred.min.css" />
-    <Content Include="Content\assets\css\skins\deepblue.min.css" />
-    <Content Include="Content\assets\css\skins\gray.min.css" />
-    <Content Include="Content\assets\css\skins\green.min.css" />
-    <Content Include="Content\assets\css\skins\orange.min.css" />
-    <Content Include="Content\assets\css\skins\pink.min.css" />
-    <Content Include="Content\assets\css\skins\purple.min.css" />
-    <Content Include="Content\assets\css\skins\teal.min.css" />
-    <Content Include="Content\assets\css\typicons.min.css" />
-    <Content Include="Content\assets\css\weather-icons.min.css" />
-    <Content Include="Content\assets\fonts\fontawesome-webfont862f.svg" />
-    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\assets\fonts\typicons.svg" />
-    <Content Include="Content\assets\fonts\weathericons-regular-webfont.svg" />
-    <Content Include="Content\assets\img\attach-blue.png" />
-    <Content Include="Content\assets\img\attach-green.png" />
-    <Content Include="Content\assets\img\attach-red.png" />
-    <Content Include="Content\assets\img\attach-yellow.png" />
-    <Content Include="Content\assets\img\avatars\adam-jansen.jpg" />
-    <Content Include="Content\assets\img\avatars\bing.png" />
-    <Content Include="Content\assets\img\avatars\divyia.jpg" />
-    <Content Include="Content\assets\img\avatars\Javi-Jimenez.jpg" />
-    <Content Include="Content\assets\img\avatars\John-Smith.jpg" />
-    <Content Include="Content\assets\img\avatars\Lee-Munroe.jpg" />
-    <Content Include="Content\assets\img\avatars\Matt-Cheuvront.jpg" />
-    <Content Include="Content\assets\img\avatars\Nicolai-Larson.jpg" />
-    <Content Include="Content\assets\img\avatars\Osvaldus-Valutis.jpg" />
-    <Content Include="Content\assets\img\avatars\Sergey-Azovskiy.jpg" />
-    <Content Include="Content\assets\img\avatars\Stephanie-Walter.jpg" />
-    <Content Include="Content\assets\img\favicon.png" />
-    <Content Include="Content\assets\img\jquery.minicolors.png" />
-    <Content Include="Content\assets\img\logo-inverted.png" />
-    <Content Include="Content\assets\img\logo-rtl.png" />
-    <Content Include="Content\assets\img\logo.png" />
-    <Content Include="Content\assets\img\sort_asc.png" />
-    <Content Include="Content\assets\img\sort_asc_disabled.png" />
-    <Content Include="Content\assets\img\sort_both.png" />
-    <Content Include="Content\assets\img\sort_desc.png" />
-    <Content Include="Content\assets\img\sort_desc_disabled.png" />
-    <Content Include="Content\assets\img\temp1.png" />
-    <Content Include="Content\assets\js\beyond.js" />
-    <Content Include="Content\assets\js\beyond.min.js" />
-    <Content Include="Content\assets\js\bootbox\bootbox.js" />
-    <Content Include="Content\assets\js\bootstrap.min.js" />
-    <Content Include="Content\assets\js\charts\chartjs\Chart.js" />
-    <Content Include="Content\assets\js\charts\chartjs\chartjs-init.js" />
-    <Content Include="Content\assets\js\charts\easypiechart\easypiechart-init.js" />
-    <Content Include="Content\assets\js\charts\easypiechart\jquery.easypiechart.js" />
-    <Content Include="Content\assets\js\charts\flot\flot-init.js" />
-    <Content Include="Content\assets\js\charts\flot\jquery.flot.crosshair.js" />
-    <Content Include="Content\assets\js\charts\flot\jquery.flot.js" />
-    <Content Include="Content\assets\js\charts\flot\jquery.flot.orderBars.js" />
-    <Content Include="Content\assets\js\charts\flot\jquery.flot.pie.js" />
-    <Content Include="Content\assets\js\charts\flot\jquery.flot.resize.js" />
-    <Content Include="Content\assets\js\charts\flot\jquery.flot.selection.js" />
-    <Content Include="Content\assets\js\charts\flot\jquery.flot.stack.js" />
-    <Content Include="Content\assets\js\charts\flot\jquery.flot.time.js" />
-    <Content Include="Content\assets\js\charts\flot\jquery.flot.tooltip.js" />
-    <Content Include="Content\assets\js\charts\morris\morris-init.js" />
-    <Content Include="Content\assets\js\charts\morris\morris.js" />
-    <Content Include="Content\assets\js\charts\morris\raphael-2.0.2.min.js" />
-    <Content Include="Content\assets\js\charts\sparkline\jquery.sparkline.js" />
-    <Content Include="Content\assets\js\charts\sparkline\sparkline-init.js" />
-    <Content Include="Content\assets\js\colorpicker\jquery.minicolors.js" />
-    <Content Include="Content\assets\js\datatable\datatables-init.js" />
-    <Content Include="Content\assets\js\datatable\dataTables.bootstrap.min.js" />
-    <Content Include="Content\assets\js\datatable\dataTables.tableTools.min.js" />
-    <Content Include="Content\assets\js\datatable\jquery.dataTables.min.js" />
-    <Content Include="Content\assets\js\datatable\ZeroClipboard.js" />
-    <Content Include="Content\assets\js\datetime\bootstrap-datepicker.js" />
-    <Content Include="Content\assets\js\datetime\bootstrap-timepicker.js" />
-    <Content Include="Content\assets\js\datetime\daterangepicker.js" />
-    <Content Include="Content\assets\js\datetime\moment.js" />
-    <Content Include="Content\assets\js\editors\summernote\summernote.js" />
-    <Content Include="Content\assets\js\editors\wysiwyg\bootstrap-wysiwyg.js" />
-    <Content Include="Content\assets\js\editors\wysiwyg\jquery.hotkeys.js" />
-    <Content Include="Content\assets\js\editors\wysiwyg\prettify.js" />
-    <Content Include="Content\assets\js\fuelux\spinbox\fuelux.spinbox.min.js" />
-    <Content Include="Content\assets\js\fuelux\treeview\tree-custom.min.js" />
-    <Content Include="Content\assets\js\fuelux\treeview\treeview-init.js" />
-    <Content Include="Content\assets\js\fuelux\wizard\wizard-custom.js" />
-    <Content Include="Content\assets\js\fullcalendar\fullcalendar.js" />
-    <Content Include="Content\assets\js\jquery-ui-1.10.4.custom.js" />
-    <Content Include="Content\assets\js\jquery.min.js" />
-    <Content Include="Content\assets\js\knob\jquery.knob.js" />
-    <Content Include="Content\assets\js\nestable\jquery.nestable.min.js" />
-    <Content Include="Content\assets\js\select2\select2.js" />
-    <Content Include="Content\assets\js\skins.min.js" />
-    <Content Include="Content\assets\js\slider\jQRangeSlider\jQAllRangeSliders-withRuler-min.js" />
-    <Content Include="Content\assets\js\slider\jquery.nouislider.js" />
-    <Content Include="Content\assets\js\slimscroll\jquery.slimscroll.min.js" />
-    <Content Include="Content\assets\js\tagsinput\bootstrap-tagsinput.js" />
-    <Content Include="Content\assets\js\textarea\jquery.autosize.js" />
-    <Content Include="Content\assets\js\toastr\toastr.js" />
-    <Content Include="Content\assets\js\validation\bootstrapValidator.js" />
-    <Content Include="Content\assets\sound\alert.mp3" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\isteven-multi-select.css" />
@@ -281,7 +169,6 @@
     <Content Include="scripts\angular-route.min.js" />
     <Content Include="scripts\angular-sanitize.js" />
     <Content Include="scripts\angular-sanitize.min.js" />
-    <Content Include="scripts\angular-ui\sortable.js" />
     <Content Include="scripts\angular-ui\ui-bootstrap-tpls.js" />
     <Content Include="scripts\angular-ui\ui-bootstrap-tpls.min.js" />
     <Content Include="scripts\angular-ui\ui-bootstrap.js" />
@@ -291,43 +178,24 @@
     <Content Include="scripts\App\AppLLV.js" />
     <Content Include="scripts\App\Config.js" />
     <Content Include="scripts\App\Controller\MainCtrl.js" />
+    <Content Include="scripts\App\Controller\ModalInstanceCtrl.js" />
     <Content Include="scripts\App\Controller\OrdemServicoCtrl.js" />
+    <Content Include="scripts\App\Directive\NavigationUserDirective.js" />
+    <Content Include="scripts\App\Directive\NavigationDirective.js" />
     <Content Include="scripts\App\View\edit-button.html" />
     <Content Include="scripts\App\View\modal-window.html" />
     <Content Include="scripts\App\ModalFactory.js" />
     <Content Include="scripts\App\Controller\GerenciaParametroCtrl.js" />
     <Content Include="scripts\App\Controller\HomeCtrl.js" />
-    <Content Include="scripts\bootstrap.js" />
-    <Content Include="scripts\bootstrap.min.js" />
-    <Content Include="Content\assets\fonts\BYekan.woff" />
-    <Content Include="Content\assets\fonts\fontawesome-webfont862f.eot" />
-    <Content Include="Content\assets\fonts\fontawesome-webfont862f.ttf" />
-    <Content Include="Content\assets\fonts\fontawesome-webfont862f.woff" />
-    <Content Include="Content\assets\fonts\fontawesome-webfontd41d.eot" />
-    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\assets\fonts\glyphicons-halflings-regulard41d.eot" />
-    <Content Include="Content\assets\fonts\typicons.eot" />
-    <Content Include="Content\assets\fonts\typicons.ttf" />
-    <Content Include="Content\assets\fonts\typicons.woff" />
-    <Content Include="Content\assets\fonts\typiconsd41d.eot" />
-    <Content Include="Content\assets\fonts\weathericons-regular-webfont.eot" />
-    <Content Include="Content\assets\fonts\weathericons-regular-webfont.ttf" />
-    <Content Include="Content\assets\fonts\weathericons-regular-webfont.woff" />
-    <Content Include="Content\assets\fonts\weathericons-regular-webfontd41d.eot" />
-    <Content Include="Content\assets\img\avatars\Thumbs.db" />
-    <Content Include="Content\assets\img\Thumbs.db" />
-    <Content Include="scripts\angular.min.js.map" />
+    <Content Include="scripts\App\View\NavigationUser.html" />
+    <Content Include="scripts\App\View\Navigation.html" />
     <Content Include="Content\ui-grid.woff" />
     <Content Include="Content\ui-grid.ttf" />
     <Content Include="Content\ui-grid.eot" />
-    <Content Include="scripts\angular-sanitize.min.js.map" />
-    <Content Include="scripts\angular-route.min.js.map" />
-    <Content Include="scripts\angular-animate.min.js.map" />
-    <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\isteven-multi-select.js" />
+    <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
@@ -373,14 +241,18 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Parametro.cshtml" />
     <Content Include="Views\Acesso\Login.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\OrdemServico\Index.cshtml" />
+    <Content Include="scripts\angular.min.js.map" />
+    <Content Include="scripts\angular-animate.min.js.map" />
+    <Content Include="scripts\angular-route.min.js.map" />
+    <Content Include="scripts\angular-sanitize.min.js.map" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -420,8 +292,8 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

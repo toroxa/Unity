@@ -1,4 +1,4 @@
-﻿AppLLV.controller('OrdemServicoCtrl', ['$scope', '$http', 'modalService', '$routeParams', function ($scope, $http, modalService, $routeParams) {
+﻿AppLLV.controller('OrdemServicoCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
     this.name = "OrdemServicoCtrl";
     this.params = $routeParams;
 
@@ -22,7 +22,7 @@
     //}).error(function (data, status, headers, config) {
     //    console.error(status + ", " + data);
     //});
-
+    $scope.disabled = undefined;
     $scope.person = {};
     $scope.people = [
       { name: 'Adam', email: 'adam@email.com', age: 10 },

@@ -1,10 +1,12 @@
 ﻿@{
     var Usuario = (LLV.Models.UsuarioModel)Session["logado"];
-    if (string.IsNullOrWhiteSpace(Usuario.Foto))
-    {
-        Usuario.Foto = "Content/assets/img/avatars/blank-avatar.jpg";
-    }
+    //if (string.IsNullOrWhiteSpace(Usuario.Foto))
+    //{
+    //    Usuario.Foto = "Content/assets/img/avatars/blank-avatar.jpg";
+    //}
     ViewBag.Title = "LLV Auto - Sadecar";
+
+    var jsonUser = Newtonsoft.Json.JsonConvert.SerializeObject(Usuario);
 }
 <!DOCTYPE html>
 <html ng-app="appLLV">
@@ -15,38 +17,29 @@
             baseUrl: '@(Url.Action("Index", "Home", null, Request.Url.Scheme).TrimEnd('/'))'
         };
         config.apiBaseUrl = config.baseUrl + '/api';
+
+        config.usuario = @Html.Raw(jsonUser);
     </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="shortcut icon" href="Content/assets/img/favicon.png" type="image/x-icon">
 
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link rel="styleSheet" href="~/Content/ui-grid.min.css" />
-
-    <!--Basic Styles-->
-    <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/assets/css/font-awesome.min.css" rel="stylesheet" />
 
     <!--Fonts-->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
-    <!--Beyond styles-->
-    <link id="beyond-link" href="~/Content/assets/css/beyond.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/assets/css/animate.min.css" rel="stylesheet" />
-
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
 
     <!-- Scripts -->
-    <script src="~/Content/assets/js/skins.min.js"></script>
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/scripts/angular.js"></script>
     <script src="~/scripts/angular-route.js"></script>
     <script src="~/scripts/angular-animate.js"></script>
-    <script src="~/scripts/angular-ui/ui-bootstrap.js"></script>
+    <script src="~/scripts/angular-ui/ui-bootstrap-tpls.js"></script>
     <script src="~/scripts/angular-sanitize.js"></script>
 
     <script src="~/scripts/select.js"></script>
@@ -58,174 +51,60 @@
     <script src="~/scripts/App/AppLLV.js"></script>
     <script src="~/scripts/App/ModalFactory.js"></script>
     <script src="~/scripts/App/Config.js"></script>
+    <script src="~/scripts/App/Directive/NavigationDirective.js"></script>
+    <script src="~/scripts/App/Controller/ModalInstanceCtrl.js"></script>
     <script src="~/scripts/App/Controller/MainCtrl.js"></script>
     <script src="~/scripts/App/Controller/HomeCtrl.js"></script>
     <script src="~/scripts/App/Controller/GerenciaParametroCtrl.js"></script>
     <script src="~/scripts/App/Controller/OrdemServicoCtrl.js"></script>
 </head>
 <body ng-controller="MainCtrl as main">
-    <div class="loading-container">
-        <div class="loader"></div>
-    </div>
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="navbar-container">
-                <div class="navbar-header pull-left">
-                    <a href="/" class="navbar-brand">
-                        <small>
-                            <img src="Content/assets/img/logo.png" alt="" />
-                        </small>
-                    </a>
-                </div>
-                <div class="sidebar-collapse active" id="sidebar-collapse">
-                    <i class="collapse-icon fa fa-bars"></i>
-                </div>
-                <div class="navbar-header pull-right">
-                    <div class="navbar-account">
-                        <ul class="account-area">
-                            <li>
-                                <a class="login-area dropdown-toggle" data-toggle="dropdown">
-                                    @{
-                                        if (!Usuario.Foto.Contains("blank-avatar.jpg"))
-                                        {
-                                            <div class="avatar" title="Visualize aqui seu Perfil">
-                                                <img src="@Html.Raw(Usuario.Foto)">
-                                            </div>
-                                        }
-                                    }
-                                    <section>
-                                        <h2><span class="profile"><span>@Html.Raw(Usuario.Nome)</span></span></h2>
-                                    </section>
-                                </a>
-                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                    <li class="username"><a>@Html.Raw(Usuario.Login)</a></li>
-                                    <li class="email"><a>@Html.Raw(Usuario.Email)</a></li>
-                                    <li>
-                                        @{
-                                            <div class="avatar-area">
-                                                <img src="@Html.Raw(Usuario.Foto)" class="avatar">
-                                                <span class="caption">Alterar Foto</span>
-                                            </div>
-                                        }
-                                    </li>
-                                    <li class="edit">
-                                        <a href="#!/Perfil" class="pull-left">Editar Perfil</a>
-                                        <!--<a href="#" class="pull-right">Setting</a>-->
-                                    </li>
-                                    <li class="theme-area">
-                                        <ul class="colorpicker" id="skin-changer">
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#5DB2FF;" rel="~/Content/assets/css/skins/blue.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#2dc3e8;" rel="~/Content/assets/css/skins/azure.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#03B3B2;" rel="~/Content/assets/css/skins/teal.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#53a93f;" rel="~/Content/assets/css/skins/green.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#FF8F32;" rel="~/Content/assets/css/skins/orange.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#cc324b;" rel="~/Content/assets/css/skins/pink.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#AC193D;" rel="~/Content/assets/css/skins/darkred.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#8C0095;" rel="~/Content/assets/css/skins/purple.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#0072C6;" rel="~/Content/assets/css/skins/darkblue.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#585858;" rel="~/Content/assets/css/skins/gray.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#474544;" rel="~/Content/assets/css/skins/black.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#001940;" rel="~/Content/assets/css/skins/deepblue.min.css"></a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-footer">
-                                        <a href="@Url.Action("Logoff", "Acesso")">Sair</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <!--<div class="setting">
-                            <a id="btn-setting" title="Setting" href="#">
-                                <i class="icon glyphicon glyphicon-cog"></i>
-                            </a>
-                        </div><div class="setting-container">
-                            <label>
-                                <input type="checkbox" id="checkbox_fixednavbar">
-                                <span class="text">Fixed Navbar</span>
-                            </label>
-                            <label>
-                                <input type="checkbox" id="checkbox_fixedsidebar">
-                                <span class="text">Fixed SideBar</span>
-                            </label>
-                            <label>
-                                <input type="checkbox" id="checkbox_fixedbreadcrumbs">
-                                <span class="text">Fixed BreadCrumbs</span>
-                            </label>
-                            <label>
-                                <input type="checkbox" id="checkbox_fixedheader">
-                                <span class="text">Fixed Header</span>
-                            </label>
-                        </div>-->
-                    </div>
-                </div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">LLV</a>
             </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <navigation class="nav navbar-nav" menu="menus" ng-show="menus"></navigation>
+                @*<form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Digite aqui">
+                    </div>
+                    <button type="submit" class="btn btn-default">Pesquisar</button>
+                </form>*@
+                <navigation-user class="nav navbar-nav navbar-right" usuario="usuario"></navigation-user>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">I'm a modal!</h3>
         </div>
-    </div>
-    <div class="main-container container-fluid">
-        <div class="page-container">
-            <div class="page-sidebar sidebar-fixed menu-compact" id="sidebar">
-                <div class="sidebar-header-wrapper">
-                    <input type="text" class="searchinput" />
-                    <i class="searchicon fa fa-search"></i>
-                    <div class="searchhelper">Pesquise aqui: Telas, Relatórios e tudo o que você não encontar no Menu abaixo!</div>
-                </div>
-                <ul class="nav sidebar-menu">
-                    <li ng-repeat="item in menus" ng-class="{ active: isActive(item.url)}">
-                        <a href="#!{{item.url}}">
-                            <i class="{{item.classIcon}}"></i>
-                            <span class="menu-text"> {{item.description}} </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="page-content">
-                <div class="page-breadcrumbs breadcrumbs-fixed">
-                    <ul class="breadcrumb">
-                        <li>
-                            <i class="fa fa-home"></i>
-                            <a href="#!/">Home</a>
-                            @*@Html.ActionLink("Home", "Index", "Home")*@
-                        </li>
-                        @{
-                            @*if (!string.IsNullOrWhiteSpace(BreadCrumbPagina))
-                                {
-                                    <li class="active">@Html.Raw(BreadCrumbPagina)</li>
-                                }*@
-                        }
-                    </ul>
-                </div>
-                <div class="page-header position-relative page-header-fixed">
-                    <div class="header-title">
-                        @{
-                            @*if (!string.IsNullOrWhiteSpace(TituloPagina))
-                                {
-                                    <h1>@Html.Raw(TituloPagina)</h1>
-                                }*@
-                        }
-                    </div>
-                    <div class="header-buttons">
-                        <a class="sidebar-toggler" href="#">
-                            <i class="fa fa-arrows-h"></i>
-                        </a>
-                        @*<a class="refresh" id="refresh-toggler" href="#">
-                                <i class="glyphicon glyphicon-refresh"></i>
-                            </a>*@
-                        <a class="fullscreen" id="fullscreen-toggler" href="#">
-                            <i class="glyphicon glyphicon-fullscreen"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="page-body">
-                    @RenderBody()
-                </div>
-            </div>
+        <div class="modal-body">
+            <ul>
+                <li ng-repeat="item in items">
+                    <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ selected.item }}</b>
         </div>
-    </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+    @RenderBody()
     <!--Basic Scripts-->
     <script src="~/scripts/jquery-1.10.2.js"></script>
     <script src="~/scripts/bootstrap.js"></script>
-    <script src="~/Content/assets/js/slimscroll/jquery.slimscroll.min.js"></script>
-    <!--Beyond Scripts-->
-    <script src="~/Content/assets/js/beyond.js"></script>
 </body>
 </html>

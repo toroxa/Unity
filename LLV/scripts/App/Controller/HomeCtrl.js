@@ -1,9 +1,3 @@
-﻿AppLLV.controller('HomeCtrl', ['$scope', '$http', 'modalService', function ($scope, $http, modalService) {
-    var vm = this;
+﻿AppLLV.controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
 
-    vm.open = function () {
-        modalService.show('Titulo', 'Aqui vai a mensagem', 'lg', function () {
-            alert('Sucesso!');
-        });
-    };
 }]);

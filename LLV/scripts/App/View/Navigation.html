@@ -1,0 +1,11 @@
+﻿<ul>
+    <li ng-repeat="item in menu | orderBy:'ordem'" ng-class="{ active: isActive(item.url), dropdown: item.menus, divider: item.description == 'separator'}">
+        <a ng-if="!item.menus && item.description != 'separator'" href="#!{{item.url}}">
+            <i class="{{item.classIcon}}"></i><span class="menu-text"> {{item.description}}</span>
+        </a>
+        <a style="cursor: pointer;" ng-if="item.menus && item.description != 'separator'" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            {{item.description}} <span class="caret"></span>
+        </a>
+        <navigation ng-if="item.description != 'separator'" menu="item.menus" class="dropdown-menu"></navigation>
+    </li>
+</ul>

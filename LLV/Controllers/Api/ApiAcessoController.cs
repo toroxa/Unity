@@ -1,6 +1,7 @@
 ﻿using LLV.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Http;
 
 namespace LLV.Controllers.Api
@@ -13,17 +14,24 @@ namespace LLV.Controllers.Api
         public ResultModel<IEnumerable<MenuModel>> GetMenus()
         {
             var result = new Result<IEnumerable<MenuModel>>();
-            var menus = new[]
-            {
-                new MenuModel() { Id = 1, Description = "Home", URL = "/", ClassIcon = "menu-icon glyphicon glyphicon-home" },
-                //new MenuModel() { Id = 2, Description = "Conf. de Parâmetros", URL = "/parametro", ClassIcon = "menu-icon glyphicon glyphicon-tasks" },
-                new MenuModel() { Id = 3, Description = "Ordem de Serviço", URL = "/os", ClassIcon = "menu-icon glyphicon glyphicon-wrench" },
+
+            //var filhosCadastro2 = new List<MenuModel>();
+            //filhosCadastro2.Add(new MenuModel() { Id = 6, Description = "Ordem de Serviço 2", URL = "/os", ClassIcon = "menu-icon glyphicon glyphicon-wrench", Ordem = 1 });
+
+            var filhosCadastro = new List<MenuModel>();
+            filhosCadastro.Add(new MenuModel() { Id = 2, Description = "Home", URL = "/inicio", ClassIcon = "menu-icon glyphicon glyphicon-home", Ordem = 2 });
+            filhosCadastro.Add(new MenuModel() { Id = 6, Description = "separator", URL = null, ClassIcon = null, Ordem = 3 });
+            filhosCadastro.Add(new MenuModel() { Id = 4, Description = "Ordem de Serviço", URL = "/os", ClassIcon = "menu-icon glyphicon glyphicon-wrench", Ordem = 4 });
+            //filhosCadastro.Add(new MenuModel() { Id = 5, Description = "Cadastro 2", URL = null, ClassIcon = null, Ordem = 0, Menus = filhosCadastro2 });
+
+            var menus = new[] {
+                new MenuModel() { Id = 1, Description = "Cadastros", URL = null, ClassIcon = null, Menus = filhosCadastro, Ordem = 1 },
             };
 
             if (null == menus)
                 return result.Empty();
 
-            var menuModels = menus.OrderBy(menuModel => menuModel.Id);
+            var menuModels = menus.OrderBy(menuModel => menuModel.Ordem);
 
             result.SetResult(menuModels);
 
