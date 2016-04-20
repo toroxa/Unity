@@ -178,13 +178,10 @@
     <Content Include="scripts\App\AppLLV.js" />
     <Content Include="scripts\App\Config.js" />
     <Content Include="scripts\App\Controller\MainCtrl.js" />
-    <Content Include="scripts\App\Controller\ModalInstanceCtrl.js" />
     <Content Include="scripts\App\Controller\OrdemServicoCtrl.js" />
     <Content Include="scripts\App\Directive\NavigationUserDirective.js" />
     <Content Include="scripts\App\Directive\NavigationDirective.js" />
     <Content Include="scripts\App\View\edit-button.html" />
-    <Content Include="scripts\App\View\modal-window.html" />
-    <Content Include="scripts\App\ModalFactory.js" />
     <Content Include="scripts\App\Controller\GerenciaParametroCtrl.js" />
     <Content Include="scripts\App\Controller\HomeCtrl.js" />
     <Content Include="scripts\App\View\NavigationUser.html" />
