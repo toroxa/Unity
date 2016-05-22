@@ -11,6 +11,9 @@
       }).when(config.baseRoute + '/os', {
           templateUrl: '/OrdemServico/Index',
           caseInsensitiveMatch: true
+      }).when(config.baseRoute + '/venda-rapida', {
+          templateUrl: '/VendaRapida/Index',
+          caseInsensitiveMatch: true
       }).otherwise({
           redirectTo: '/'
       });
@@ -21,5 +24,5 @@
       //});
 
       // Specify HTML5 mode (using the History APIs) or HashBang syntax.
-      $locationProvider.html5Mode(false).hashPrefix('!');
+      $locationProvider.html5Mode(false);//.hashPrefix('!');
   }]);

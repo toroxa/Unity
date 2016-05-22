@@ -2,8 +2,9 @@
 {
     public class PessoaModel
     {
-        public string Codigo { get; set; }
-        public int Id { get; set; }
+        public int PessoaId { get; set; }
         public string Nome { get; set; }
+        public bool Ativo { get; set; }
+        public string DisplayName { get; set; }
     }
 }

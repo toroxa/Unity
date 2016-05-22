@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace LLV.Controllers
 {
-    public class OrdemServicoController : Controller
+    public class VendaRapidaController : Controller
     {
         public ActionResult Index()
         {

@@ -1,5 +1,11 @@
 ﻿<row>
     <div ng-controller="HomeCtrl as home">
-        <button type="button" class="btn btn-default" ng-click="open()">Open me!</button>
+        <button type="button" class="btn btn-default" ng-click="CarregaClientes()">Carregar Clientes</button>
+        <div ng-show="CarregandoClientes">Carregando Clientes... Aguarde!</div>
+        <ul ng-show="pessoas">
+            <li ng-repeat="pessoa in pessoas">
+                {{pessoa.nome}}
+            </li>
+        </ul>
     </div>
 </row>

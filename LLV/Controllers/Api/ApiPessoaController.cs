@@ -1,4 +1,5 @@
-﻿using LLV.Models;
+﻿using LLV.DAL;
+using LLV.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -9,22 +10,31 @@ namespace LLV.Controllers.Api
     public class ApiPessoaController : ApiController
     {
         [HttpGet]
-        [Route("listar/{grupoid:int}")]
-        public ResultModel<IEnumerable<PessoaModel>> GetPessoas(int grupoid)
+        [Route("listar/{GrupoId:int}")]
+        public ResultModel<IEnumerable<PessoaModel>> GetPessoas(int GrupoId)
         {
             var result = new Result<IEnumerable<PessoaModel>>();
-            var pessoas = new[]
-            {
-                new PessoaModel() { Id = 1, Codigo = "1", Nome = "VINICIUS DE SIQUEIRA CAMPOS" },
-            };
+            IList<PessoaModel> pessoas = new PessoaDAL().ListarPessoas(GrupoId);
 
-            if (null == pessoas)
+            if (null == pessoas || pessoas.Count == 0)
                 return result.Empty();
 
             var pessoaModels = pessoas.OrderBy(pessoaModel => pessoaModel.Nome);
-
             result.SetResult(pessoaModels);
+            return result.Resolve();
+        }
 
+        [HttpGet]
+        [Route("carregar/{PessoaId:int}")]
+        public ResultModel<PessoaModel> GetPessoa(int PessoaId)
+        {
+            var result = new Result<PessoaModel>();
+            PessoaModel pessoa = new PessoaDAL().CarregarPessoa(PessoaId);
+
+            if (null == pessoa)
+                return result.Empty();
+
+            result.SetResult(pessoa);
             return result.Resolve();
         }
     }

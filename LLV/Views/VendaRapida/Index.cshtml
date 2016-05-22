@@ -1,0 +1,38 @@
+﻿<row>
+    <div ng-controller="VendaRapidaCtrl as vendarapida">
+        {{venda}}
+        @*<img src="~/Content/loading.gif" ng-show="CarregandoFuncionarios || CarregandoClientes || CarregandoVenda" style="position: absolute; z-index: 9999;" />*@
+        <input type="hidden" ng-model="venda.compraVendaId" />
+        <ui-select ng-model="venda.pessoaVenda"
+                   theme="bootstrap"
+                   ng-disabled="CarregandoFuncionarios"
+                   reset-search-input="false"
+                   style="width: 300px;">
+            <ui-select-match class="ui-select-match" placeholder="Selecione o Funcionário...">{{$select.selected.displayName}}</ui-select-match>
+            <ui-select-choices class="ui-select-choices" repeat="fun in funcionarios | propsFilter: {nome: $select.search}">
+                <div ng-bind-html="fun.displayName | highlight: $select.search"></div>
+            </ui-select-choices>
+        </ui-select>
+        <ui-select ng-model="venda.pessoaCompra"
+                   theme="bootstrap"
+                   ng-disabled="CarregandoClientes"
+                   reset-search-input="false"
+                   style="width: 300px;">
+            <ui-select-match class="ui-select-match" placeholder="Selecione o Cliente...">{{$select.selected.displayName}}</ui-select-match>
+            <ui-select-choices class="ui-select-choices" repeat="cli in clientes | propsFilter: {nome: $select.search}">
+                <div ng-bind-html="cli.displayName | highlight: $select.search"></div>
+            </ui-select-choices>
+        </ui-select>
+        <uib-datepicker ng-model="venda.dataCompraVenda" class="well well-sm" datepicker-options="dateOptions"></uib-datepicker>
+        <div class="col-md-2">
+            <p class="input-group">
+                <input type="date" class="form-control" uib-datepicker-popup="{{format}}" ng-model="venda.dataCompraVenda" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+        <input type="text" ng-model="venda.observacao" />
+        @*<div class="grid" ui-grid-selection ui-grid-auto-resize ui-grid="vendarapida.gridOptions" ui-grid-edit></div>*@
+    </div>
+</row>
